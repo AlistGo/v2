@@ -2,7 +2,7 @@
 
 # 构建前端,在当前目录产生一个dist文件夹
 BUILD_WEB() {
-  git clone https://github.com/alist-org/alist-web.git
+  git clone -b feature/anchor https://github.com/alist-org/alist-web.git
   cd alist-web
   yarn
   yarn build

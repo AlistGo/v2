@@ -120,9 +120,9 @@ func Path(c *gin.Context) {
 		// 对于中转文件或只能中转,将链接修改为中转链接
 		if driver.Config().OnlyProxy || account.Proxy {
 			if account.DownProxyUrl != "" {
-				file.Url = fmt.Sprintf("%s%s?sign=%s", strings.Split(account.DownProxyUrl, "\n")[0], req.Path, utils.SignWithToken(file.Name, conf.Token))
+				file.Url = fmt.Sprintf("%s%s?sign=%s", strings.Split(account.DownProxyUrl, "\n")[0], utils.EncodePath(req.Path), utils.SignWithToken(file.Name, conf.Token))
 			} else {
-				file.Url = fmt.Sprintf("//%s/p%s?sign=%s", c.Request.Host, req.Path, utils.SignWithToken(file.Name, conf.Token))
+				file.Url = fmt.Sprintf("//%s/p%s?sign=%s", c.Request.Host, utils.EncodePath(req.Path), utils.SignWithToken(file.Name, conf.Token))
 			}
 		} else if !driver.Config().NoNeedSetLink {
 			link, err := driver.Link(base.Args{Path: path, IP: c.ClientIP()}, account)

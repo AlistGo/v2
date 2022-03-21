@@ -8,6 +8,7 @@ import (
 	"github.com/Xhofe/alist/utils"
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
+	"net/url"
 )
 
 type LinkReq struct {
@@ -24,6 +25,10 @@ func Link(c *gin.Context) {
 	}
 	req.Path = utils.ParsePath(req.Path)
 	rawPath := req.Path
+	decode, err := url.PathUnescape(rawPath)
+	if err != nil {
+		rawPath = decode
+	}
 	rawPath = utils.ParsePath(rawPath)
 	log.Debugf("link: %s", rawPath)
 	account, path, driver, err := common.ParsePath(rawPath)

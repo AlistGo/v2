@@ -293,7 +293,7 @@ func InitSettings() {
 		{
 			Key:         "Enable Casdoor",
 			Value:       "false",
-			Description: "Enable Casdoor login",
+			Description: "Enable Casdoor login, you need to restart alist after modification",
 			Type:        "bool",
 			Access:      model.PRIVATE,
 			Group:       model.BACK,
@@ -339,10 +339,10 @@ func InitSettings() {
 			Group:       model.BACK,
 		},
 		{
-			Key:         "Casdoor Jwt Public Key",
+			Key:         "Casdoor Certificate",
 			Value:       "",
-			Description: "Casdoor Jwt Public Key",
-			Type:        "string",
+			Description: "Casdoor Certificate",
+			Type:        "text",
 			Access:      model.PRIVATE,
 			Group:       model.BACK,
 		},
